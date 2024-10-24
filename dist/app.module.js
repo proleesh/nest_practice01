@@ -15,6 +15,9 @@ const video_module_1 = require("./video/video.module");
 const chat_module_1 = require("./chat/chat.module");
 const video_entity_1 = require("./video/entities/video.entity");
 const message_entity_1 = require("./chat/entities/message.entity");
+const user_entity_1 = require("./user/entities/user.entity");
+const user_module_1 = require("./user/user.module");
+const jwt_1 = require("@nestjs/jwt");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -28,11 +31,16 @@ exports.AppModule = AppModule = __decorate([
                 username: 'root',
                 password: 'password',
                 database: 'media_chat_app',
-                entities: [video_entity_1.Video, message_entity_1.Message],
+                entities: [video_entity_1.Video, message_entity_1.Message, user_entity_1.User],
                 synchronize: true,
             }),
             video_module_1.VideoModule,
             chat_module_1.ChatModule,
+            user_module_1.UserModule,
+            jwt_1.JwtModule.register({
+                secret: 'secretKey',
+                signOptions: { expiresIn: '1h' },
+            }),
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

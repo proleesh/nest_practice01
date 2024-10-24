@@ -6,6 +6,9 @@ import { VideoModule } from './video/video.module';
 import { ChatModule } from './chat/chat.module';
 import { Video } from './video/entities/video.entity';
 import { Message } from './chat/entities/message.entity';
+import { User } from './user/entities/user.entity';
+import { UserModule } from './user/user.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -16,11 +19,16 @@ import { Message } from './chat/entities/message.entity';
       username: 'root',
       password: 'password',
       database: 'media_chat_app',
-      entities: [Video, Message],
+      entities: [Video, Message, User],
       synchronize: true, // Only developer mode
     }),
     VideoModule,
     ChatModule,
+    UserModule,
+    JwtModule.register({
+      secret: 'secretKey',
+      signOptions: { expiresIn: '1h' },
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
