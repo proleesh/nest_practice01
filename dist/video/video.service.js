@@ -33,7 +33,10 @@ let VideoService = class VideoService {
         if (!video) {
             throw new common_1.NotFoundException(`ID: ${id} 비디오 없음`);
         }
-        return video;
+        return {
+            ...video,
+            url: `http://localhost:3000/${video.url}`,
+        };
     }
 };
 exports.VideoService = VideoService;

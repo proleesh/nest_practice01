@@ -7,5 +7,11 @@ export declare class VideoController {
         description: string;
     }): Promise<import("./entities/video.entity").Video>;
     findAll(): Promise<import("./entities/video.entity").Video[]>;
-    findOne(id: string): Promise<import("./entities/video.entity").Video>;
+    findOne(id: string): Promise<{
+        url: string;
+        id: number;
+        title: string;
+        description: string;
+        createAt: Date;
+    }>;
 }

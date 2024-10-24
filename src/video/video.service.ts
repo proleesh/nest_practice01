@@ -20,10 +20,13 @@ export class VideoService {
   }
 
   async findOne(id: number) {
-    const video = await this.videoRepository.findOneBy({id});
+    const video = await this.videoRepository.findOneBy({ id });
     if (!video) {
       throw new NotFoundException(`ID: ${id} 비디오 없음`);
     }
-    return video;
+    return {
+      ...video,
+      url: `http://localhost:3000/${video.url}`,
+    };
   }
 }
