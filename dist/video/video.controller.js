@@ -37,6 +37,9 @@ let VideoController = class VideoController {
     async findAll() {
         return await this.videoService.findAll();
     }
+    findOne(id) {
+        return this.videoService.findOne(+id);
+    }
 };
 exports.VideoController = VideoController;
 __decorate([
@@ -65,6 +68,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], VideoController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], VideoController.prototype, "findOne", null);
 exports.VideoController = VideoController = __decorate([
     (0, common_1.Controller)('videos'),
     __metadata("design:paramtypes", [video_service_1.VideoService])

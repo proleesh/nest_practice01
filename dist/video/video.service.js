@@ -28,6 +28,13 @@ let VideoService = class VideoService {
     findAll() {
         return this.videoRepository.find();
     }
+    async findOne(id) {
+        const video = await this.videoRepository.findOneBy({ id });
+        if (!video) {
+            throw new common_1.NotFoundException(`ID: ${id} 비디오 없음`);
+        }
+        return video;
+    }
 };
 exports.VideoService = VideoService;
 exports.VideoService = VideoService = __decorate([

@@ -7,6 +7,7 @@ import {
   UseInterceptors,
   HttpException,
   HttpStatus,
+  Param,
 } from '@nestjs/common';
 import { VideoService } from './video.service';
 import { diskStorage } from 'multer';
@@ -52,5 +53,10 @@ export class VideoController {
   @Get()
   async findAll() {
     return await this.videoService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string){
+    return this.videoService.findOne(+id);
   }
 }

@@ -5,4 +5,5 @@ export declare class VideoService {
     constructor(videoRepository: Repository<Video>);
     create(videoData: Partial<Video>): Promise<Video>;
     findAll(): Promise<Video[]>;
+    findOne(id: number): Promise<Video>;
 }
